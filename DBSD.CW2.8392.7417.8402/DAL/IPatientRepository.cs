@@ -8,7 +8,6 @@ namespace DBSD.CW2._8392._7417._8402.DAL
 {
     public interface IPatientRepository
     {
-        public List<Patient> GetPatients();
 
         public List<Patient> Filter(
                 string name,
@@ -16,19 +15,26 @@ namespace DBSD.CW2._8392._7417._8402.DAL
                 DateTime? registeredDate,
                 string diagnoseName,
                 string doctorName,
-                //out int totalCount, not sure about these
-                //string sortColumn, 
+                int totalCount,
+                int pageSize,
+                string sortColumn, 
                 bool orderDesc = false,
-                int? pageNum = 1,
-                int pageSize = 4
+                int? pageNum = 1
             );
 
         public void Insert(Patient entity);
+        public void BulkInsert(List<Patient> patients);
 
         public void Update(Patient entity);
 
         public Patient GetById(int id);
 
         public void Delete(int id);
+
+        //not sure whether we need it, but I guess that we need
+        public List<Ward> GetWards();
+        public List<Diagnose> GetDiagnoses();
+        public List<Doctor> GetDoctors();
+
     }
 }

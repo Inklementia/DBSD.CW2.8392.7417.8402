@@ -10,7 +10,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
 {
     public class PatientFilterViewModel
     {
-        [DisplayName("Last name")]
+        [DisplayName("Full name")]
         public string Name { get; set; }
 
         public string Address { get; set; }
@@ -27,7 +27,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         public int CurrentPage { get; set; } = 1;
 
-        public string SortDirection { get; set; } = "ASC";
+        public int OrderDesc { get; set; } = 0;
 
         public IPagedList<Patient> Patients;
     }

@@ -1,3 +1,4 @@
+using DBSD.CW2._8392._7417._8402.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +15,8 @@ namespace DBSD.CW2._8392._7417._8402
 {
     public class Startup
     {
+        private const string DataDirectory = "|DataDirectory|";
+        private string _appPath;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,12 +27,19 @@ namespace DBSD.CW2._8392._7417._8402
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPatientRepository>(
+                 x => new PatientRepository(
+                         Configuration.GetConnectionString("BISHospitalConnStr")
+                         .Replace(DataDirectory, _appPath)
+                     )
+              );
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            _appPath = Path.Combine(env.ContentRootPath, "Data");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
