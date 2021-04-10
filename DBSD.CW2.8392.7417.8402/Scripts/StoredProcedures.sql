@@ -11,7 +11,7 @@ create procedure udp_create_patient (@firstName nvarchar(50),
 									 @diagnoseId int,
 									 @doctorId int,
 									 @wardId int,
-									 @photo varbinary(max),
+									 @photo varbinary(max) = null,
 									 @emergencyHospitalization bit)
 as
 begin
@@ -46,6 +46,7 @@ values	(@firstName,
 		 0)
 end
 go
+
 --update patient
 create procedure udp_update_patient (@id int,
 									 @firstName nvarchar(50),
@@ -152,11 +153,11 @@ set @query = 'select p.firstName,
 					 concat(nurse.lastName,'' '', nurse.firstName) as nurseName
 				from patient p'
 				
-	declare @joinClause nvarchar(max) = ' join diagnose diag on p.diagnoseId = diag.id
-				join doctor doc on p.doctorId = doc.id
-				join ward on p.wardId = ward.id
-				join nurse on ward.nurseId = nurse.id
-				join department dept on doc.departmentId = dept.id'
+	declare @joinClause nvarchar(max) = ' left outer join diagnose diag on p.diagnoseId = diag.id
+				left outer join doctor doc on p.doctorId = doc.id
+				left outer join ward on p.wardId = ward.id
+				left outer join nurse on ward.nurseId = nurse.id
+				left outer join department dept on doc.departmentId = dept.id'
 --filtering
  declare @whereClause nvarchar(max) = ' where p.id<>0';
  --if name is not null, search value in last name and first name
@@ -228,7 +229,6 @@ set @query = 'select p.firstName,
 	execute sp_executesql @countQuery,@parameters, @name,@address,@registeredDate,@diagnoseName,@doctorName,@rowsCount = @rowsCount out
 end
 
-
 --stored procedure for bulk insertion
 go
 create type patientTable as table (
@@ -245,6 +245,7 @@ wardId int not null,
 photo varbinary(max),
 emergencyHospitalization bit not null
 )
+
 go
 create procedure udp_patient_bulk_insert 
 (
@@ -289,3 +290,4 @@ return(1) --error
 end catch
 end
 go
+

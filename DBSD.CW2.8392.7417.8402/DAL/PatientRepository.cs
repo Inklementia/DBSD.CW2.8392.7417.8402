@@ -18,7 +18,28 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         }
         public void Insert(Patient entity)
         {
-            Insert_Procedure(entity);
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var procedure = "udp_create_patient";
+                var parameters = new DynamicParameters();
+                parameters.Add("@firstName", entity.FirstName);
+                parameters.Add("@lastName", entity.LastName);
+                parameters.Add("@dob", entity.DoB);
+                parameters.Add("@occupation", entity.Occupation);
+                parameters.Add("@gender", entity.Gender);
+                parameters.Add("@phone", entity.Phone);
+                parameters.Add("@address", entity.Address);
+                parameters.Add("@diagnoseId", entity.DiagnoseId);
+                parameters.Add("@doctorId", entity.DoctorId);
+                parameters.Add("@wardId", entity.WardId);
+                parameters.Add("@emergencyHospitalization", entity.EmergencyHospitalization);
+                if(entity.Photo!=null)
+                {
+                    parameters.Add("@photo", entity.Photo);
+                }
+
+                connection.Execute(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
         }
         public void BulkInsert(List<Patient> patients)
         {
@@ -106,13 +127,5 @@ namespace DBSD.CW2._8392._7417._8402.DAL
             throw new NotImplementedException();
         }
 
-        private void Insert_Procedure (Patient patient)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var procedure = "udp_create_patient";
-                connection.Execute(procedure, patient, commandType: CommandType.StoredProcedure);
-            }
-        }
     }
 }

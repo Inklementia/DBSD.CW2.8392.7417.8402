@@ -21,6 +21,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         [Required]
         [DisplayName("Date of Birth")]
+        [DataType(DataType.Date)]
         public DateTime? DoB { get; set; }
 
         public string Occupation { get; set; }
@@ -34,6 +35,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
         public string Address { get; set; }
 
         [DisplayName("Registered Date")]
+        [DataType(DataType.Date)]
         public DateTime RegisteredDate { get; set; }
 
         [DisplayName("Diagnose")]

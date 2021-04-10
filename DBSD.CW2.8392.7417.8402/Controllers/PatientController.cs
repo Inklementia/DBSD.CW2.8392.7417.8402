@@ -68,18 +68,35 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // POST: PatientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Patient patient)
+        public ActionResult Create(PatientCreateViewModel model)
         {
             try
             {
+                var patient = new Patient
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    DoB = model.DoB,
+                    Occupation = model.Occupation,
+                    Gender = model.Gender,
+                    Phone = model.Phone,
+                    Address = model.Address,
+                    DoctorId = model.DoctorId,
+                    DiagnoseId = model.DiagnoseId,
+                    WardId = model.WardId,
+                    EmergencyHospitalization = model.EmergencyHospitalization
+                };
                 _repository.Insert(patient);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Filter));
             }
-            catch (Exception ex)
+          
+           catch(Exception ex)
             {
-                return View();
+                return View(model);
+
             }
+          
         }
 
         // GET: PatientController/Edit/5
