@@ -24,8 +24,6 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController
         public ActionResult Filter(
                 int pageNum,
-                string sortColumn,
-                string sortDirection,
                 PatientFilterViewModel filter
             )
         {
@@ -38,17 +36,13 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                                               filter.DiagnoseName,
                                               filter.DoctorName,
                                               pageSize, 
-                                              sortColumn,
+                                              filter.SortColumn.ToString(),
                                               pageNum,
                                               out int totalCount,
-                                              "Desc".Equals(sortDirection, StringComparison.OrdinalIgnoreCase) ? true : false);
+                                             filter.SortDesc);
 
             filter.Patients = new StaticPagedList<Patient>(patients, pageNum, pageSize, totalCount);
             filter.CurrentPage = pageNum;
-            filter.SortDirection = "DESC".Equals(sortDirection, StringComparison.OrdinalIgnoreCase)
-                ? "ASC"
-                : "DESC";
-
 
             return View(filter);
         }

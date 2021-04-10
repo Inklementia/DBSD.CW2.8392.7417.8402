@@ -143,6 +143,7 @@ declare @parameters as nvarchar(max)
 set @query = 'select p.firstName,
 					 p.lastName,
 					 p.dob,
+					 p.address,
 					 p.gender,
 					 p.phone,
 					 p.registeredDate,
@@ -189,18 +190,18 @@ set @query = 'select p.firstName,
 --sort by date of birth
 	else if(@orderBy='dob')
 		set @query = @query + ' order by p.dob'
---sort by patient last name
-	else if(@orderBy='lastName')
-		set @query = @query + ' order by p.lastName'
+--sort by registered date
+	else if(@orderBy='registeredDate')
+		set @query = @query + ' order by p.registeredDate'
 --sort by nurse last name
 	else if (@orderBy='nurseName')
 		set @query = @query + ' order by nurse.lastName'
 --sort by doctor last name
 	else if (@orderBy='doctorName')
 		set @query = @query + ' order by doc.lastName'
---sort by date registered by default
+--sort by patient last name by default
 	else 
-		set @query = @query + ' order by p.registeredDate'
+		set @query = @query + ' order by p.lastName'
 	
 	if @orderDesc=1
 		set @query = @query + ' desc'

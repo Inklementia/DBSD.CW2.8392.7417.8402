@@ -27,8 +27,25 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         public int CurrentPage { get; set; } = 1;
 
-        public string SortDirection { get; set; } = "ASC";
+        [DisplayName("Sort desceding")]
+        public bool SortDesc { get; set; }
+
+        [DisplayName("Sort by")]
+        public SortColumn SortColumn { get; set; }
 
         public IPagedList<Patient> Patients;
+    }
+    public enum SortColumn
+    {
+        [Display(Name = "Patient last name")]
+        LastName,
+        [Display(Name = "Ward number")]
+        WardNo,
+        [Display(Name = "Doctor last name")]
+        DoctorName,
+        [Display(Name = "Nurse last name")]
+        NurseName,
+        [Display(Name = "Date registered")]
+        RegisteredDate
     }
 }
