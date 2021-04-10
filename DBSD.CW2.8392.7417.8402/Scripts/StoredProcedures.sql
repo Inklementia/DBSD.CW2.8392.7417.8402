@@ -87,7 +87,8 @@ go
 create procedure udp_get_by_id (@id int) as
 begin
 --getting all related data
-select	p.firstName,
+select	p.id,
+		p.firstName,
 		p.lastName,
 		p.dob,
 		p.occupation,
@@ -95,23 +96,25 @@ select	p.firstName,
 		p.phone,
 		p.address,
 		p.registeredDate,
+		p.diagnoseId,
 		diag.name as diagnoseName,
+		p.doctorId,
 		concat(doc.lastName, ' ', doc.firstName) as doctorName,
 		dept.name as departmentName,
+		p.wardId,
 		ward.number as wardNo,
 		concat(nurse.lastName, ' ', nurse.firstName) as nurseName,
 		p.photo,
 		p.emergencyHospitalization,
 		p.isDischarged
 		from patient p
-		join diagnose diag on p.diagnoseId = diag.id
-		join doctor doc on p.doctorId = doc.id
-		join ward on p.wardId = ward.id
-		join nurse on ward.nurseId = nurse.id
-		join department dept on doc.departmentId = dept.id
+		left outer join diagnose diag on p.diagnoseId = diag.id
+		left outer join doctor doc on p.doctorId = doc.id
+		left outer join ward on p.wardId = ward.id
+		left outer join nurse on ward.nurseId = nurse.id
+		left outer join department dept on doc.departmentId = dept.id
 		where p.id = @id
 end
-
 go
 --delete patient
 create procedure udp_delete_patient (@id int) as
@@ -140,7 +143,8 @@ declare @query as nvarchar(max)
 --parameters to pass to extended stored procedure
 declare @parameters as nvarchar(max)
 --getting necessary fields from 6 tables
-set @query = 'select p.firstName,
+set @query = 'select p.id,
+					 p.firstName,
 					 p.lastName,
 					 p.dob,
 					 p.address,
@@ -291,5 +295,4 @@ return(1) --error
 end catch
 end
 go
-
 

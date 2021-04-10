@@ -510,3 +510,5 @@ C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.pdb
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.genruntimeconfig.cache
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Create.cshtml.g.cs
+C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Details.cshtml.g.cs
+C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Delete.cshtml.g.cs

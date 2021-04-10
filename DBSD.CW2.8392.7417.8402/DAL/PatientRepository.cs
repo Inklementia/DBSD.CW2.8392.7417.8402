@@ -51,7 +51,13 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using(var connection = new SqlConnection(_connectionString))
+            {
+                var command = "udp_delete_patient";
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", id);
+                connection.Execute(command, parameters, commandType: CommandType.StoredProcedure);
+            }
         }
 
         public List<Patient> Filter(string name, string address, DateTime? registeredDate, string diagnoseName, string doctorName, int pageSize, string sortColumn, int? pageNum, out int rowsCount ,bool orderDesc = false)
@@ -109,7 +115,14 @@ namespace DBSD.CW2._8392._7417._8402.DAL
 
         public Patient GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = "udp_get_by_id";
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", id);
+                var patient = connection.Query<Patient>(command,parameters,commandType:CommandType.StoredProcedure).Single();
+                return patient;
+            }
         }
 
         public List<Diagnose> GetDiagnoses()

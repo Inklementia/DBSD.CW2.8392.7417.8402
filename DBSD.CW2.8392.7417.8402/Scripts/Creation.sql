@@ -1,5 +1,5 @@
-﻿use BIS_hospital
-
+﻿
+use BIS_hospital
 go
 create table diagnose (
 id int identity(1,1) not null,
@@ -84,4 +84,3 @@ select * into patient_log from patient where 1<>1 order by id
 alter table patient_log add dateModified datetime
 alter table patient_log add operation nvarchar(20)
 
-select id, name from diagnose

@@ -51,7 +51,8 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var patient = _repository.GetById(id);
+            return View(patient);
         }
 
         // GET: PatientController/Create
@@ -110,10 +111,11 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // POST: PatientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Patient patient)
         {
             try
             {
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -125,21 +127,23 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var patient = _repository.GetById(id);
+            return View(patient);
         }
 
         // POST: PatientController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Patient patient)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _repository.Delete(id);
+                return RedirectToAction(nameof(Filter));
             }
             catch
             {
-                return View();
+                return View(patient);
             }
         }
     }

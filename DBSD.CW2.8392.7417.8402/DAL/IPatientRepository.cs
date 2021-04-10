@@ -31,7 +31,6 @@ namespace DBSD.CW2._8392._7417._8402.DAL
 
         public void Delete(int id);
 
-        //not sure whether we need it, but I guess that we need
         public List<Ward> GetWards();
         public List<Diagnose> GetDiagnoses();
         public List<Doctor> GetDoctors();

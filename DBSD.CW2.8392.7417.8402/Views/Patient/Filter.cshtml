@@ -57,6 +57,9 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Patients.First().Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Patients.First().LastName)
             </th>
             <th>
@@ -99,6 +102,9 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
         @foreach (var item in Model.Patients)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
