@@ -15,11 +15,11 @@ namespace DBSD.CW2._8392._7417._8402.DAL
                 DateTime? registeredDate,
                 string diagnoseName,
                 string doctorName,
-                int totalCount,
                 int pageSize,
-                string sortColumn, 
-                bool orderDesc = false,
-                int? pageNum = 1
+                string sortColumn,
+                int? pageNum,
+                out int rowsCount,
+                bool orderDesc = false
             );
 
         public void Insert(Patient entity);

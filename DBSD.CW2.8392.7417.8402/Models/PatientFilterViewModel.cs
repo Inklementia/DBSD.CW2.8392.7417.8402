@@ -17,7 +17,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         [DisplayName("Registered Date")]
         [DataType(DataType.Date)]
-        public DateTime RegisteredDate { get; set; }
+        public DateTime? RegisteredDate { get; set; }
 
         [DisplayName("Diagnose Name")]
         public string DiagnoseName { get; set; }
@@ -27,7 +27,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         public int CurrentPage { get; set; } = 1;
 
-        public int OrderDesc { get; set; } = 0;
+        public string SortDirection { get; set; } = "ASC";
 
         public IPagedList<Patient> Patients;
     }

@@ -61,7 +61,7 @@ namespace DBSD.CW2._8392._7417._8402
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Patient}/{action=Filter}/{id?}");
             });
         }
     }
