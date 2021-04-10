@@ -2,6 +2,7 @@
 using DBSD.CW2._8392._7417._8402.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 {
     public class PatientController : Controller
     {
-        private IPatientRepository _repository;
-        private IConfiguration _configuration;
+        private readonly IPatientRepository _repository;
+        private readonly IConfiguration _configuration;
 
         public PatientController(IPatientRepository repository, IConfiguration configuration)
         {
@@ -56,14 +57,21 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new PatientCreateEditViewModel
+            {
+                Diagnoses = new SelectList(_repository.GetDiagnoses(), "Id", "Name"),
+                Doctors = new SelectList(_repository.GetDoctors(), "Id", "Name"),
+                Wards = new SelectList(_repository.GetWards(), "Id", "Number")
+            };
+            return View(model);
         }
 
         // POST: PatientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PatientCreateViewModel model)
+        public ActionResult Create(PatientCreateEditViewModel model)
         {
+          
             try
             {
                 var patient = new Patient
@@ -85,7 +93,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 return RedirectToAction(nameof(Filter));
             }
           
-           catch(Exception ex)
+           catch
             {
                 return View(model);
 

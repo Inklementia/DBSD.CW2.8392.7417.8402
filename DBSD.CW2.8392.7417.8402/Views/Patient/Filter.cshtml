@@ -7,7 +7,9 @@
 }
 
 <h1>Patient list</h1>
-
+<p>
+    <a class="btn btn-primary" asp-action="Create">Register patient</a>
+</p>
 <h4>Filter patients</h4>
 <hr />
 <div class="row">
@@ -134,9 +136,9 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
                 @Html.DisplayFor(modelItem => item.NurseName)
             </td>
             <td class="d-flex flex-column">
-                @Html.ActionLink("Edit", "Edit", new { id = item.PatientId })
-                @Html.ActionLink("Details", "Details", new { id = item.PatientId })
-                @Html.ActionLink("Delete", "Delete", new { id = item.PatientId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
         }

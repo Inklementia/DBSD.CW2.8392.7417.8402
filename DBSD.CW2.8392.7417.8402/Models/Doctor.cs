@@ -8,9 +8,9 @@ namespace DBSD.CW2._8392._7417._8402.Models
 {
     public class Doctor
     {
-        public int? DoctorId { get; set; }
+        public int? Id { get; set; }
 
         [DisplayName("Doctor Name")]
-        public string DoctorName { get; set; }
+        public string Name { get; set; }
     }
 }

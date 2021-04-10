@@ -114,17 +114,32 @@ namespace DBSD.CW2._8392._7417._8402.DAL
 
         public List<Diagnose> GetDiagnoses()
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = "select id, name from diagnose";
+                var list = connection.Query<Diagnose>(command, commandType: CommandType.Text).AsList();
+                return list;
+            }
         }
 
         public List<Doctor> GetDoctors()
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = "select id, concat(lastName,' ',firstName) as name from doctor";
+                var list = connection.Query<Doctor>(command, commandType: CommandType.Text).AsList();
+                return list;
+            }
         }
 
         public List<Ward> GetWards()
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = "select id, number from ward";
+                var list = connection.Query<Ward>(command, commandType: CommandType.Text).AsList();
+                return list;
+            }
         }
 
     }

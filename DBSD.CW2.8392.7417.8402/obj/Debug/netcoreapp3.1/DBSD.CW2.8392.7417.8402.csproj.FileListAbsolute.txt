@@ -496,7 +496,6 @@ C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.RazorCoreGenerate.cache
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\CreatePatient.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Filter.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
