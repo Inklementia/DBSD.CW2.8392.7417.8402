@@ -47,7 +47,31 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         }
         public void Update(Patient entity)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var procedure = "udp_update_patient";
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", entity.Id);
+                parameters.Add("@firstName", entity.FirstName);
+                parameters.Add("@lastName", entity.LastName);
+                parameters.Add("@dob", entity.DoB);
+                parameters.Add("@occupation", entity.Occupation);
+                parameters.Add("@gender", entity.Gender);
+                parameters.Add("@phone", entity.Phone);
+                parameters.Add("@address", entity.Address);
+                parameters.Add("@registeredDate", entity.RegisteredDate);
+                parameters.Add("@diagnoseId", entity.DiagnoseId);
+                parameters.Add("@doctorId", entity.DoctorId);
+                parameters.Add("@wardId", entity.WardId);
+                parameters.Add("@emergencyHospitalization", entity.EmergencyHospitalization);
+                parameters.Add("@isDischarged", entity.IsDischarged);
+                if (entity.Photo != null)
+                {
+                    parameters.Add("@photo", entity.Photo);
+                }
+
+                connection.Execute(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
         }
         public void Delete(int id)
         {

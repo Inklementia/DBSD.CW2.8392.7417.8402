@@ -51,6 +51,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Details/5
         public ActionResult Details(int id)
         {
+            //TO DO: display image logic
             var patient = _repository.GetById(id);
             return View(patient);
         }
@@ -58,13 +59,8 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Create
         public ActionResult Create()
         {
-            var model = new PatientCreateEditViewModel
-            {
-                Diagnoses = new SelectList(_repository.GetDiagnoses(), "Id", "Name"),
-                Doctors = new SelectList(_repository.GetDoctors(), "Id", "Name"),
-                Wards = new SelectList(_repository.GetWards(), "Id", "Number")
-            };
-            return View(model);
+            var model = new PatientCreateEditViewModel();
+            return View(GetDataForSelectList(model));
         }
 
         // POST: PatientController/Create
@@ -75,27 +71,16 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
           
             try
             {
-                var patient = new Patient
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    DoB = model.DoB,
-                    Occupation = model.Occupation,
-                    Gender = model.Gender,
-                    Phone = model.Phone,
-                    Address = model.Address,
-                    DoctorId = model.DoctorId,
-                    DiagnoseId = model.DiagnoseId,
-                    WardId = model.WardId,
-                    EmergencyHospitalization = model.EmergencyHospitalization
-                };
+                var patient = MapViewModelToPatient(model);
+                //TO DO: photo upload logic 
                 _repository.Insert(patient);
 
                 return RedirectToAction(nameof(Filter));
             }
           
-           catch
+           catch(Exception ex)
             {
+                model.ErrorMessage = ex.Message;
                 return View(model);
 
             }
@@ -105,28 +90,42 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         // GET: PatientController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //TO DO: display image logic
+            var patient = _repository.GetById(id);
+            var model = MapPatientToViewModel(patient);
+            return View(model);
         }
 
         // POST: PatientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Patient patient)
+        public ActionResult Edit(PatientCreateEditViewModel model)
         {
             try
             {
-
+                var patient = MapViewModelToPatient(model);
+                if(model.PhotoUpload!=null)
+                {
+                    //TO DO: photo upload logic
+                } else
+                {
+                    //if user did not choose new photo, leave old one
+                    patient.Photo = model.Photo;
+                }
+                _repository.Update(patient);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                model.ErrorMessage = ex.Message;
+                return View(model);
             }
         }
 
         // GET: PatientController/Delete/5
         public ActionResult Delete(int id)
         {
+            //TO DO: display image logic
             var patient = _repository.GetById(id);
             return View(patient);
         }
@@ -145,6 +144,58 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             {
                 return View(patient);
             }
+        }
+
+        private PatientCreateEditViewModel GetDataForSelectList(PatientCreateEditViewModel model)
+        {
+
+            model.Diagnoses = new SelectList(_repository.GetDiagnoses(), "Id", "Name");
+                model.Doctors = new SelectList(_repository.GetDoctors(), "Id", "Name");
+            model.Wards = new SelectList(_repository.GetWards(), "Id", "Number");
+            return model;
+        }
+        private Patient MapViewModelToPatient (PatientCreateEditViewModel model)
+        {
+            var patient = new Patient
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                DoB = model.DoB,
+                Occupation = model.Occupation,
+                Gender = model.Gender,
+                Phone = model.Phone,
+                Address = model.Address,
+                DoctorId = model.DoctorId,
+                DiagnoseId = model.DiagnoseId,
+                WardId = model.WardId,
+                RegisteredDate = model.RegisteredDate,
+                EmergencyHospitalization = model.EmergencyHospitalization,
+                IsDischarged = model.IsDischarged
+            };
+            return patient;
+        }
+        private PatientCreateEditViewModel MapPatientToViewModel(Patient patient)
+        {
+            var model = new PatientCreateEditViewModel
+            {
+                Id = patient.Id,
+                FirstName = patient.FirstName,
+                LastName = patient.LastName,
+                DoB = patient.DoB,
+                Occupation = patient.Occupation,
+                Gender = patient.Gender,
+                Phone = patient.Phone,
+                Address = patient.Address,
+                DoctorId = patient.DoctorId,
+                DiagnoseId = patient.DiagnoseId,
+                WardId = patient.WardId,
+                RegisteredDate = patient.RegisteredDate,
+                EmergencyHospitalization = patient.EmergencyHospitalization,
+                IsDischarged = patient.IsDischarged,
+                Photo = patient.Photo
+            };
+            return GetDataForSelectList(model);
         }
     }
 }

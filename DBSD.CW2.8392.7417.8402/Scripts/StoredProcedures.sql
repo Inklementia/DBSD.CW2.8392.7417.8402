@@ -46,7 +46,6 @@ values	(@firstName,
 		 0)
 end
 go
-
 --update patient
 create procedure udp_update_patient (@id int,
 									 @firstName nvarchar(50),
@@ -60,7 +59,7 @@ create procedure udp_update_patient (@id int,
 									 @diagnoseId int,
 									 @doctorId int,
 									 @wardId int,
-									 @photo varbinary(max),
+									 @photo varbinary(max) = null,
 									 @emergencyHospitalization bit,
 									 @isDischarged bit)
 as

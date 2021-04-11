@@ -15,6 +15,8 @@ namespace DBSD.CW2._8392._7417._8402.Models
        public SelectList Wards { get; set; }
        public SelectList Diagnoses { get; set; }
         [DataType(DataType.Upload)]
-       public new IFormFile Photo { get; set; }
+       public IFormFile PhotoUpload { get; set; }
+        //to display errors
+       public string ErrorMessage { get; set; }
     }
 }
