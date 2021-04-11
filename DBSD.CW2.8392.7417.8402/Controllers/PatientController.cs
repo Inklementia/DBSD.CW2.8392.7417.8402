@@ -1,13 +1,18 @@
-﻿using DBSD.CW2._8392._7417._8402.DAL;
+﻿using CsvHelper;
+using DBSD.CW2._8392._7417._8402.DAL;
 using DBSD.CW2._8392._7417._8402.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using X.PagedList;
 
 namespace DBSD.CW2._8392._7417._8402.Controllers
@@ -22,6 +27,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             _repository = repository;
             _configuration = configuration;
         }
+
         // GET: PatientController
         public ActionResult Filter(
                 int pageNum,
@@ -47,6 +53,195 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
             return View(filter);
         }
+
+        #region Exporting
+
+        // Export Json file method
+        public ActionResult ExportJson(PatientFilterViewModel model)
+        {
+            var patientsList = _repository.Filter(model.Name,
+                                              model.Address,
+                                              model.RegisteredDate,
+                                              model.DiagnoseName,
+                                              model.DoctorName,
+                                              1000_0000,
+                                              null,
+                                              1,
+                                              out int totalCount,
+                                              false);
+
+            var memory = new MemoryStream();
+            var writer = new StreamWriter(memory);
+            var serializer = new JsonSerializer();
+            serializer.Serialize(writer, patientsList);
+            writer.Flush();
+
+            memory.Position = 0;
+            if (memory != Stream.Null)
+                return File(memory, "application/json", $"Export_{DateTime.Now}.json");
+
+            return NotFound();
+        }
+
+        // Export Xml file method
+        public ActionResult ExportXml(PatientFilterViewModel model)
+        {
+            var patientsList = _repository.Filter(model.Name,
+                                              model.Address,
+                                              model.RegisteredDate,
+                                              model.DiagnoseName,
+                                              model.DoctorName,
+                                              1000_0000,
+                                              null,
+                                              1,
+                                              out int totalCount,
+                                              false);
+
+            var memory = new MemoryStream();
+            var writer = new StreamWriter(memory);
+            var serializer = new XmlSerializer(typeof(List<Patient>));
+            serializer.Serialize(writer, patientsList);
+            writer.Flush();
+
+            memory.Position = 0;
+            if (memory != Stream.Null)
+                return File(memory, "application/xml", $"Export_{DateTime.Now}.xml");
+
+            return NotFound();
+        }
+
+        // Export Csv file method
+        public ActionResult ExportCsv(PatientFilterViewModel model)
+        {
+            var patientsList = _repository.Filter(model.Name,
+                                              model.Address,
+                                              model.RegisteredDate,
+                                              model.DiagnoseName,
+                                              model.DoctorName,
+                                              1000_0000,
+                                              null,
+                                              1,
+                                              out int totalCount,
+                                              false);
+
+            var memory = new MemoryStream();
+            var writer = new StreamWriter(memory);
+            var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csvWriter.WriteRecords(patientsList);
+            writer.Flush();
+
+            memory.Position = 0;
+            if (memory != Stream.Null)
+                return File(memory, "text/csv", $"Export_{DateTime.Now}.csv");
+
+            return NotFound();
+        }
+
+        #endregion Exporting
+
+        #region Importing
+
+        #region ImportJson
+
+        public ActionResult ImportJson()
+        {
+            return View();
+        }
+
+        // POST: Patient/ImportJson
+        [HttpPost]
+        public ActionResult ImportJson(IFormFile importFile)
+        {
+            List<Patient> patients = null;
+            if (importFile != null)
+            {
+                using (var stream = importFile.OpenReadStream())
+                using(var reader = new StreamReader(stream))
+                {
+                    var serializer = new JsonSerializer();
+                    patients = (List<Patient>)serializer.Deserialize(reader, typeof(List<Patient>));
+                }
+
+                _repository.BulkInsert(patients);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Empty file");
+            }
+
+            return View(patients);
+        }
+
+        #endregion ImportJson
+
+        #region ImportCsv
+
+        public ActionResult ImportCsv()
+        {
+            return View();
+        }
+
+        // POST: Patient/ImportCsv
+        [HttpPost]
+        public ActionResult ImportCsv(IFormFile importFile)
+        {
+            List<Patient> patients = null;
+            if (importFile != null)
+            {
+                using (var stream = importFile.OpenReadStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    var serializer = new CsvReader(reader, CultureInfo.InvariantCulture);
+                    patients = serializer.GetRecords<Patient>().ToList<Patient>();
+                }
+
+                _repository.BulkInsert(patients);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Empty file");
+            }
+
+            return View(patients);
+        }
+
+        #endregion ImportCsv
+
+        #region ImportXml
+        // view for import
+        public ActionResult ImportXml()
+        {
+            return View();
+        }
+
+        // Method for importing Xml file
+        // POST: Patient/ImportXml
+        [HttpPost]
+        public ActionResult ImportXml(IFormFile importFile)
+        {
+            var patients = new List<Patient>();
+            if (importFile != null)
+            {
+                using (var stream = importFile.OpenReadStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    var serializer = new XmlSerializer(typeof(List<Patient>));
+                    patients = (List<Patient>)serializer.Deserialize(reader);
+                }
+
+                _repository.BulkInsert(patients);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Empty file");
+            }
+
+            return View(patients);
+        }
+
+        #endregion ImportXml
+
+        #endregion Importing
 
         // GET: PatientController/Details/5
         public ActionResult Details(int id)
@@ -113,7 +308,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                     patient.Photo = model.Photo;
                 }
                 _repository.Update(patient);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Filter));
             }
             catch(Exception ex)
             {

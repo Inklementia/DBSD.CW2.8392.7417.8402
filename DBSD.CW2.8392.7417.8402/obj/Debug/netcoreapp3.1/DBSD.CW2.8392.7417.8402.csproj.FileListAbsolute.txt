@@ -514,3 +514,11 @@ C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Delete.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Edit.cshtml.g.cs
 C:\Users\Home\Desktop\level5\DBSD\DBSD_CW2\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Test.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Create.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Delete.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Details.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Edit.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\Filter.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\ImportJson.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\ImportCsv.cshtml.g.cs
+C:\Users\User\Desktop\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\Razor\Views\Patient\ImportXml.cshtml.g.cs

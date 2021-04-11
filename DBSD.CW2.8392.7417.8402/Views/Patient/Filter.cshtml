@@ -53,6 +53,44 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
     </div>
 </div>
 
+<hr />
+@Html.ActionLink(
+    "Export to JSON",
+    "ExportJson",
+    new
+    {
+        name = Model.Name,
+        address = Model.Address,
+        registeredDate = Model.RegisteredDate,
+        diagnoseName = Model.DiagnoseName,
+        doctorName = Model.DoctorName
+    })
+
+@Html.ActionLink(
+    "Export to XML",
+    "ExportXml",
+    new
+    {
+        name = Model.Name,
+        address = Model.Address,
+        registeredDate = Model.RegisteredDate,
+        diagnoseName = Model.DiagnoseName,
+        doctorName = Model.DoctorName
+    })
+
+@Html.ActionLink(
+    "Export to CSV",
+    "ExportCsv",
+    new
+    {
+        name = Model.Name,
+        address = Model.Address,
+        registeredDate = Model.RegisteredDate,
+        diagnoseName = Model.DiagnoseName,
+        doctorName = Model.DoctorName
+    })
+<hr />
+
 <table class="table">
     <thead>
         <tr>
@@ -98,49 +136,49 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
     <tbody>
         @foreach (var item in Model.Patients)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisteredDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiagnoseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WardNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NurseName)
-            </td>
-            <td class="d-flex flex-column">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisteredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnoseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WardNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NurseName)
+                </td>
+                <td class="d-flex flex-column">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
         }
     </tbody>
 </table>
