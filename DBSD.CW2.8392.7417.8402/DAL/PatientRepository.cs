@@ -43,7 +43,33 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         }
         public void BulkInsert(List<Patient> patients)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var table = new DataTable("patientTable");
+                table.Columns.Add("firstName", typeof(string));
+                table.Columns.Add("lastName", typeof(string));
+                table.Columns.Add("dob", typeof(string));
+                table.Columns.Add("occupation", typeof(string)).AllowDBNull = true;
+                table.Columns.Add("gender", typeof(int));
+                table.Columns.Add("phone", typeof(string));
+                table.Columns.Add("address", typeof(string));
+                table.Columns.Add("diagnoseId", typeof(int)).AllowDBNull = true;
+                table.Columns.Add("doctorId", typeof(int)).AllowDBNull = true ;
+                table.Columns.Add("wardId", typeof(int)).AllowDBNull = true ;
+                table.Columns.Add("photo", typeof(byte[])).AllowDBNull = true ;
+                table.Columns.Add("emergencyHospitalization", typeof(bool));
+                table.Columns.Add("isDischarged", typeof(bool)).AllowDBNull = true;
+
+                foreach(Patient patient in patients)
+                {
+                    table.Rows.Add(patient.FirstName, patient.LastName, patient.DoB,
+                                   patient.Occupation, patient.Gender, patient.Phone,
+                                   patient.Address, patient.DiagnoseId, patient.DoctorId,
+                                   patient.WardId, patient.Photo, patient.EmergencyHospitalization, patient.IsDischarged);
+                }
+                var procedure = "udp_patient_bulk_insert";
+                connection.Execute(procedure, new { @patientTable = table }, commandType: CommandType.StoredProcedure);
+            }
         }
         public void Update(Patient entity)
         {
@@ -77,10 +103,10 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         {
             using(var connection = new SqlConnection(_connectionString))
             {
-                var command = "udp_delete_patient";
+                var procedure = "udp_delete_patient";
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
-                connection.Execute(command, parameters, commandType: CommandType.StoredProcedure);
+                connection.Execute(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -141,10 +167,10 @@ namespace DBSD.CW2._8392._7417._8402.DAL
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = "udp_get_by_id";
+                var procedure = "udp_get_by_id";
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
-                var patient = connection.Query<Patient>(command,parameters,commandType:CommandType.StoredProcedure).Single();
+                var patient = connection.Query<Patient>(procedure, parameters,commandType:CommandType.StoredProcedure).Single();
                 return patient;
             }
         }

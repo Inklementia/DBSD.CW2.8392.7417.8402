@@ -146,6 +146,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             }
         }
 
+
         private PatientCreateEditViewModel GetDataForSelectList(PatientCreateEditViewModel model)
         {
 

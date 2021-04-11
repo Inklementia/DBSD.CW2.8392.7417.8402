@@ -243,11 +243,12 @@ occupation nvarchar(100),
 gender int not null,
 phone nvarchar(20) not null,
 [address] nvarchar(200) not null,
-diagnoseId int not null,
-doctorId int not null,
-wardId int not null,
+diagnoseId int,
+doctorId int,
+wardId int,
 photo varbinary(max),
-emergencyHospitalization bit not null
+emergencyHospitalization bit not null,
+isDischarged bit
 )
 
 go
@@ -285,7 +286,7 @@ select  firstName,
 		doctorId,
 		wardId,
 		emergencyHospitalization,
-		0
+		coalesce(isDischarged, 0)
 from @patientTable
 return(0) --success
 end try
