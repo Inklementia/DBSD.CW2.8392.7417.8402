@@ -23,7 +23,7 @@ namespace DBSD.CW2._8392._7417._8402.DAL
             );
 
         public void Insert(Patient entity);
-        public void BulkInsert(List<Patient> patients);
+        public void BulkInsert(IList<Patient> patients);
 
         public void Update(Patient entity);
 

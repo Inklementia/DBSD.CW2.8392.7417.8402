@@ -41,7 +41,7 @@ namespace DBSD.CW2._8392._7417._8402.DAL
                 connection.Execute(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
         }
-        public void BulkInsert(List<Patient> patients)
+        public void BulkInsert(IList<Patient> patients)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

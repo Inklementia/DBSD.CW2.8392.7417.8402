@@ -147,14 +147,21 @@ set @query = 'select p.id,
 					 p.lastName,
 					 p.dob,
 					 p.address,
+					 p.occupation,
 					 p.gender,
 					 p.phone,
 					 p.registeredDate,
+					 p.diagnoseId,
 					 diag.name as diagnoseName,
+					 p.doctorId,
 					 concat(doc.lastName, '' '', doc.firstName) as doctorName,
 					 dept.name as departmentName,
+					 p.wardId,
 					 ward.number as wardNo,
-					 concat(nurse.lastName,'' '', nurse.firstName) as nurseName
+					 concat(nurse.lastName,'' '', nurse.firstName) as nurseName,
+					 p.emergencyHospitalization,
+					 p.photo,
+					 p.isDischarged
 				from patient p'
 				
 	declare @joinClause nvarchar(max) = ' left outer join diagnose diag on p.diagnoseId = diag.id

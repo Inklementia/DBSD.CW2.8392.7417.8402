@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DBSD.CW2._8392._7417._8402.Models
@@ -33,10 +34,11 @@ namespace DBSD.CW2._8392._7417._8402.Models
         [DataType(DataType.Date)]
         public DateTime? DoB { get; set; }
 
-        // not serializable by default
+        [DataMember]
         public string Occupation { get; set; }
 
         [DataMember]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Gender Gender { get; set; }
 
         [DataMember]
@@ -60,10 +62,10 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         [DisplayName("Ward")]
         public int? WardId { get; set; }
-
+        [DataMember]
         [DisplayName("Emergency Hospitalization")]
         public bool EmergencyHospitalization { get; set; }
-
+        [DataMember]
         [DisplayName("Discharged")]
         public bool IsDischarged { get; set; }
 
@@ -92,6 +94,8 @@ namespace DBSD.CW2._8392._7417._8402.Models
 }
 public enum Gender
 {
+    [EnumMember(Value = "Male")]
     Male,
+    [EnumMember(Value = "Female")]
     Female
 }

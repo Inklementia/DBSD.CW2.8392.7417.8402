@@ -152,7 +152,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         [HttpPost]
         public ActionResult ImportJson(IFormFile importFile)
         {
-            List<Patient> patients = null;
+            IList<Patient> patients = null;
             if (importFile != null)
             {
                 using (var stream = importFile.OpenReadStream())
