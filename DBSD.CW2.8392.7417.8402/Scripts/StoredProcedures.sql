@@ -27,6 +27,7 @@ insert into patient (firstName,
 					diagnoseId,
 					doctorId, 
 					wardId, 
+					photo,
 					emergencyHospitalization, 
 					isDischarged)
 values	(@firstName,
@@ -41,6 +42,7 @@ values	(@firstName,
 		 @diagnoseId,
 		 @doctorId,
 		 @wardId,
+		 @photo,
 		 @emergencyHospitalization,
 		 --when patient gets hospitalized, isDischarged field is automatically set to false, it can be modified later
 		 0)

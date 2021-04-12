@@ -80,7 +80,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             {
                 //photo upload 
                 byte[] photoBytes = null;
-                if(model.PhotoUpload != null)
+                if(model.PhotoUpload.FileName != null)
                 {
                     using (var memory = new MemoryStream())
                     {
@@ -122,7 +122,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             {
                 byte[] photoBytes = null;
                 var patient = MapViewModelToPatient(model, photoBytes);
-                if(model.PhotoUpload != null)
+                if(model.PhotoUpload.FileName != null)
                 {
                     using (var memory = new MemoryStream())
                     {

@@ -143,9 +143,6 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
             <th>
                 @Html.DisplayNameFor(model => model.Patients.First().Photo)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patients.First().RegisteredDate)
-            </th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -191,9 +188,6 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisteredDate)
             </td>
             <td class="flex-column">
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id })
