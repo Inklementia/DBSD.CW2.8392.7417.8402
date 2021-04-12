@@ -196,7 +196,6 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 x.Gender,
                 x.Phone,
                 x.Address,
-                x.Photo,
                 x.RegisteredDate,
                 x.EmergencyHospitalization,
                 x.IsDischarged,
@@ -216,7 +215,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "application/json", $"Export_{DateTime.Now}.json");
+                return File(memory, "application/json", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.json");
 
             return NotFound();
         }
@@ -243,7 +242,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "application/xml", $"Export_{DateTime.Now}.xml");
+                return File(memory, "application/xml", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.xml");
 
             return NotFound();
         }
@@ -265,13 +264,13 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
             var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csvWriter.Context.RegisterClassMap<PatientCSVHeadersMap>();
+            csvWriter.Context.RegisterClassMap<PatientCSVExportHeadersMap>();
             csvWriter.WriteRecords(patientsList);
             writer.Flush();
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "text/csv", $"Export_{DateTime.Now}.csv");
+                return File(memory, "text/csv", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.csv");
 
             return NotFound();
         }
@@ -326,7 +325,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 using (var reader = new StreamReader(stream))
                 {
                     var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
-                    csvReader.Context.RegisterClassMap<PatientCSVHeadersMap>();
+                    csvReader.Context.RegisterClassMap<PatientCSVImportHeadersMap>();
                     patients = csvReader.GetRecords<Patient>().ToList<Patient>();
                 }
 

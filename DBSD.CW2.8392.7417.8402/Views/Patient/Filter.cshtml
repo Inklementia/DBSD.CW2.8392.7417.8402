@@ -187,7 +187,14 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
                 @Html.DisplayFor(modelItem => item.NurseName)
             </td>
             <td>
-                <img src="@Url.Action("ShowImage", new { id = item.Id})" width="70" />
+                @if (item.Photo != null)
+                {
+                    <img src="@Url.Action("ShowImage", new { id = item.Id })" width="70" />
+                }
+                else
+                {
+                    <img src="~/images/default.png" width="70" />
+                }
             </td>
             <td class="flex-column">
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id })

@@ -65,6 +65,7 @@ namespace DBSD.CW2._8392._7417._8402.Models
         [DisplayName("Discharged")]
         public bool IsDischarged { get; set; }
 
+        [XmlIgnore]
         public byte[] Photo { get; set; }
 
 

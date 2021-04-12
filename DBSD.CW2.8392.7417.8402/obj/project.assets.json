@@ -8098,23 +8098,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Home\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Inna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Home\\Desktop\\level5\\DBSD\\DBSD_CW2\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
+      "projectUniqueName": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
       "projectName": "DBSD.CW2.8392.7417.8402",
-      "projectPath": "C:\\Users\\Home\\Desktop\\level5\\DBSD\\DBSD_CW2\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
-      "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Home\\Desktop\\level5\\DBSD\\DBSD_CW2\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\obj\\",
+      "projectPath": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
+      "packagesPath": "C:\\Users\\Inna\\.nuget\\packages\\",
+      "outputPath": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Inna\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8179,7 +8175,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
