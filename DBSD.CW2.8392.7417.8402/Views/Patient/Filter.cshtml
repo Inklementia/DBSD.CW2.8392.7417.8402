@@ -14,7 +14,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Filter">
+        <form asp-action="Filter" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -53,46 +53,56 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
     </div>
 </div>
 
-<hr />
-@Html.ActionLink(
+<div class="export-btn text-center">
+    <span class="btn btn-warning text-btn">
+        @Html.ActionLink(
     "Export to JSON",
     "ExportJson",
     new
     {
-        name = Model.Name,
-        address = Model.Address,
-        registeredDate = Model.RegisteredDate,
-        diagnoseName = Model.DiagnoseName,
-        doctorName = Model.DoctorName
+       name = Model.Name,
+       address = Model.Address,
+       registeredDate = Model.RegisteredDate,
+       diagnoseName = Model.DiagnoseName,
+       doctorName = Model.DoctorName
     })
+    </span>
 
-@Html.ActionLink(
-    "Export to XML",
-    "ExportXml",
-    new
-    {
-        name = Model.Name,
-        address = Model.Address,
-        registeredDate = Model.RegisteredDate,
-        diagnoseName = Model.DiagnoseName,
-        doctorName = Model.DoctorName
-    })
+    <div class="btn btn-warning text-btn">
+        @Html.ActionLink(
+        "Export to XML",
+        "ExportXml",
+        new
+        {
+            name = Model.Name,
+            address = Model.Address,
+            registeredDate = Model.RegisteredDate,
+            diagnoseName = Model.DiagnoseName,
+            doctorName = Model.DoctorName
+        })
 
-@Html.ActionLink(
-    "Export to CSV",
-    "ExportCsv",
-    new
-    {
-        name = Model.Name,
-        address = Model.Address,
-        registeredDate = Model.RegisteredDate,
-        diagnoseName = Model.DiagnoseName,
-        doctorName = Model.DoctorName
-    })
-<hr />
+    </div>
+    <div class="btn btn-warning text-btn">
+        @Html.ActionLink(
+            "Export to CSV",
+            "ExportCsv",
+            new
+            {
+                name = Model.Name,
+                address = Model.Address,
+                registeredDate = Model.RegisteredDate,
+                diagnoseName = Model.DiagnoseName,
+                doctorName = Model.DoctorName
+            })
+    </div>
 
-<table class="table">
-    <thead>
+    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportJson">Import Json</a>
+    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportXml">Import Xml</a>
+    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportCsv">Import Csv</a>
+</div>
+
+<table class="table table-bordered shadow">
+    <thead class="shadow">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Patients.First().Id)
@@ -130,7 +140,7 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
             <th>
                 @Html.DisplayNameFor(model => model.Patients.First().NurseName)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -173,7 +183,7 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
                 <td>
                     @Html.DisplayFor(modelItem => item.NurseName)
                 </td>
-                <td class="d-flex flex-column">
+                <td class="flex-column">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                     @Html.ActionLink("Details", "Details", new { id = item.Id })
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })

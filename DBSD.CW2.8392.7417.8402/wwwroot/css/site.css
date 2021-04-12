@@ -12,6 +12,25 @@ a {
   color: #0366d6;
 }
 
+.export-btn {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.back {
+    padding: 10px;
+    color: #fff;
+}
+
+.import-file {
+    padding-bottom: 35px;
+}
+.text-btn {
+    padding: 10px;
+}
+.text-btn > a {
+    color: #fff;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
