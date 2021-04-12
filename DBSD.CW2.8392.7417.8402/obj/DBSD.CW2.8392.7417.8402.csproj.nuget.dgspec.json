@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj": {}
+    "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj": {
+    "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
+        "projectUniqueName": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
         "projectName": "DBSD.CW2.8392.7417.8402",
-        "projectPath": "C:\\Users\\User\\Desktop\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\obj\\",
+        "projectPath": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402.csproj",
+        "packagesPath": "C:\\Users\\Inna\\.nuget\\packages\\",
+        "outputPath": "D:\\csharp_files\\DBSD.CW2.8392.7417.8402\\DBSD.CW2.8392.7417.8402\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Inna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

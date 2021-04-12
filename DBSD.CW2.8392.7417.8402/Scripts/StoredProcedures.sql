@@ -201,8 +201,10 @@ set @query = 'select p.id,
 	else if(@orderBy='dob')
 		set @query = @query + ' order by p.dob'
 --sort by registered date
-	else if(@orderBy='registeredDate')
-		set @query = @query + ' order by p.registeredDate'
+	else if(@orderBy='registeredDate' AND  @orderDesc=0)
+		set @query = @query + ' order by p.registeredDate, p.id'
+	else if(@orderBy='registeredDate' AND  @orderDesc=1)
+		set @query = @query + ' order by p.registeredDate desc, p.id'
 --sort by nurse last name
 	else if (@orderBy='nurseName')
 		set @query = @query + ' order by nurse.lastName'

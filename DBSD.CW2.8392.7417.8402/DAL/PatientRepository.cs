@@ -115,6 +115,7 @@ namespace DBSD.CW2._8392._7417._8402.DAL
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameters = new DynamicParameters();
+
                 //filtering
                 if(!string.IsNullOrWhiteSpace(name))
                 {

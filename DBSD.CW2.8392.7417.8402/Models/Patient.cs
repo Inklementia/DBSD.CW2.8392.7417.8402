@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DBSD.CW2._8392._7417._8402.Models
 {
@@ -46,12 +48,15 @@ namespace DBSD.CW2._8392._7417._8402.Models
         public DateTime RegisteredDate { get; set; }
 
         [DisplayName("Diagnose")]
+        [XmlIgnore]
         public int? DiagnoseId { get; set; }
 
         [DisplayName("Doctor")]
+        [XmlIgnore]
         public int? DoctorId { get; set; }
 
         [DisplayName("Ward")]
+        [XmlIgnore]
         public int? WardId { get; set; }
 
         [DisplayName("Emergency Hospitalization")]
@@ -83,9 +88,11 @@ namespace DBSD.CW2._8392._7417._8402.Models
         public string NurseName { get; set; }
     }
 }
+[JsonConverter(typeof(StringEnumConverter))]
 public enum Gender
 {
     [EnumMember(Value = "Male")]
+
     Male,
     [EnumMember(Value = "Female")]
     Female

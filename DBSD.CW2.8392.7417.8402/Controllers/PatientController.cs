@@ -28,6 +28,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             _configuration = configuration;
         }
 
+        #region CRUD
         // GET: PatientController
         public ActionResult Filter(
                 int pageNum,
@@ -54,6 +55,121 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             return View(filter);
         }
 
+        // GET: PatientController/Details/5
+        public ActionResult Details(int id)
+        {
+            //TO DO: display image logic
+            var patient = _repository.GetById(id);
+            return View(patient);
+        }
+
+        // GET: PatientController/Create
+        public ActionResult Create()
+        {
+            var model = new PatientCreateEditViewModel();
+            return View(GetDataForSelectList(model));
+        }
+
+        // POST: PatientController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PatientCreateEditViewModel model)
+        {
+          
+            try
+            {
+                //photo upload 
+                byte[] photoBytes = null;
+                if(model.PhotoUpload != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        model.PhotoUpload.CopyTo(memory);
+                        photoBytes = memory.ToArray();
+                    }
+                }
+                var patient = MapViewModelToPatient(model, photoBytes);
+                
+                _repository.Insert(patient);
+
+                return RedirectToAction(nameof(Filter));
+            }
+          
+           catch(Exception ex)
+            {
+                model.ErrorMessage = ex.Message;
+                return View(model);
+
+            }
+          
+        }
+
+        // GET: PatientController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            //TO DO: display image logic
+            var patient = _repository.GetById(id);
+            var model = MapPatientToViewModel(patient);
+            return View(model);
+        }
+
+        // POST: PatientController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(PatientCreateEditViewModel model)
+        {
+            try
+            {
+                byte[] photoBytes = null;
+                var patient = MapViewModelToPatient(model, photoBytes);
+                if(model.PhotoUpload != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        model.PhotoUpload.CopyTo(memory);
+                        photoBytes = memory.ToArray();
+                    }
+
+                } else
+                {
+                    //if user did not choose new photo, leave old one
+                    patient.Photo = model.Photo;
+                }
+                _repository.Update(patient);
+                return RedirectToAction(nameof(Filter));
+            }
+            catch(Exception ex)
+            {
+                model.ErrorMessage = ex.Message;
+                return View(model);
+            }
+        }
+
+        // GET: PatientController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            //TO DO: display image logic
+            var patient = _repository.GetById(id);
+            return View(patient);
+        }
+
+        // POST: PatientController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, Patient patient)
+        {
+            try
+            {
+                _repository.Delete(id);
+                return RedirectToAction(nameof(Filter));
+            }
+            catch
+            {
+                return View(patient);
+            }
+        }
+        #endregion CRUD
+
         #region Exporting
 
         // Export Json file method
@@ -70,10 +186,32 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                                               out int totalCount,
                                               false);
 
+
+            var patientListWithoutFKs = patientsList.Select(x => new {
+                x.Id,
+                x.FirstName,
+                x.LastName,
+                x.DoB,
+                x.Occupation,
+                x.Gender,
+                x.Phone,
+                x.Address,
+                x.Photo,
+                x.RegisteredDate,
+                x.EmergencyHospitalization,
+                x.IsDischarged,
+                x.DiagnoseName,
+                x.DoctorName,
+                x.DepartmentName,
+                x.NurseName,
+                x.WardNo
+            }).ToList();
+
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
             var serializer = new JsonSerializer();
-            serializer.Serialize(writer, patientsList);
+            serializer.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+            serializer.Serialize(writer, patientListWithoutFKs);
             writer.Flush();
 
             memory.Position = 0;
@@ -127,6 +265,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
             var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csvWriter.Context.RegisterClassMap<PatientCSVHeadersMap>();
             csvWriter.WriteRecords(patientsList);
             writer.Flush();
 
@@ -141,8 +280,6 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
         #region Importing
 
-        #region ImportJson
-
         public ActionResult ImportJson()
         {
             return View();
@@ -156,7 +293,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             if (importFile != null)
             {
                 using (var stream = importFile.OpenReadStream())
-                using(var reader = new StreamReader(stream))
+                using (var reader = new StreamReader(stream))
                 {
                     var serializer = new JsonSerializer();
                     patients = (List<Patient>)serializer.Deserialize(reader, typeof(List<Patient>));
@@ -172,9 +309,6 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             return View(patients);
         }
 
-        #endregion ImportJson
-
-        #region ImportCsv
 
         public ActionResult ImportCsv()
         {
@@ -191,8 +325,9 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 using (var stream = importFile.OpenReadStream())
                 using (var reader = new StreamReader(stream))
                 {
-                    var serializer = new CsvReader(reader, CultureInfo.InvariantCulture);
-                    patients = serializer.GetRecords<Patient>().ToList<Patient>();
+                    var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+                    csvReader.Context.RegisterClassMap<PatientCSVHeadersMap>();
+                    patients = csvReader.GetRecords<Patient>().ToList<Patient>();
                 }
 
                 _repository.BulkInsert(patients);
@@ -205,9 +340,6 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             return View(patients);
         }
 
-        #endregion ImportCsv
-
-        #region ImportXml
         // view for import
         public ActionResult ImportXml()
         {
@@ -239,109 +371,9 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             return View(patients);
         }
 
-        #endregion ImportXml
-
         #endregion Importing
 
-        // GET: PatientController/Details/5
-        public ActionResult Details(int id)
-        {
-            //TO DO: display image logic
-            var patient = _repository.GetById(id);
-            return View(patient);
-        }
-
-        // GET: PatientController/Create
-        public ActionResult Create()
-        {
-            var model = new PatientCreateEditViewModel();
-            return View(GetDataForSelectList(model));
-        }
-
-        // POST: PatientController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(PatientCreateEditViewModel model)
-        {
-          
-            try
-            {
-                var patient = MapViewModelToPatient(model);
-                //TO DO: photo upload logic 
-                _repository.Insert(patient);
-
-                return RedirectToAction(nameof(Filter));
-            }
-          
-           catch(Exception ex)
-            {
-                model.ErrorMessage = ex.Message;
-                return View(model);
-
-            }
-          
-        }
-
-        // GET: PatientController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            //TO DO: display image logic
-            var patient = _repository.GetById(id);
-            var model = MapPatientToViewModel(patient);
-            return View(model);
-        }
-
-        // POST: PatientController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(PatientCreateEditViewModel model)
-        {
-            try
-            {
-                var patient = MapViewModelToPatient(model);
-                if(model.PhotoUpload!=null)
-                {
-                    //TO DO: photo upload logic
-                } else
-                {
-                    //if user did not choose new photo, leave old one
-                    patient.Photo = model.Photo;
-                }
-                _repository.Update(patient);
-                return RedirectToAction(nameof(Filter));
-            }
-            catch(Exception ex)
-            {
-                model.ErrorMessage = ex.Message;
-                return View(model);
-            }
-        }
-
-        // GET: PatientController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            //TO DO: display image logic
-            var patient = _repository.GetById(id);
-            return View(patient);
-        }
-
-        // POST: PatientController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Patient patient)
-        {
-            try
-            {
-                _repository.Delete(id);
-                return RedirectToAction(nameof(Filter));
-            }
-            catch
-            {
-                return View(patient);
-            }
-        }
-
-
+        #region Other
         private PatientCreateEditViewModel GetDataForSelectList(PatientCreateEditViewModel model)
         {
 
@@ -350,7 +382,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             model.Wards = new SelectList(_repository.GetWards(), "Id", "Number");
             return model;
         }
-        private Patient MapViewModelToPatient (PatientCreateEditViewModel model)
+        private Patient MapViewModelToPatient (PatientCreateEditViewModel model, byte[] photoBytes)
         {
             var patient = new Patient
             {
@@ -362,6 +394,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 Gender = model.Gender,
                 Phone = model.Phone,
                 Address = model.Address,
+                Photo = photoBytes,
                 DoctorId = model.DoctorId,
                 DiagnoseId = model.DiagnoseId,
                 WardId = model.WardId,
@@ -393,5 +426,20 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             };
             return GetDataForSelectList(model);
         }
+
+        public ActionResult ShowImage(int? id)
+        {
+            if (id.HasValue)
+            {
+                var patient = _repository.GetById(id ?? -1);
+                if(patient?.Photo != null)
+                {
+                    return File(patient.Photo, "image/jpeg", $"patient_photo_{id}.jpg");
+                }
+            }
+            return NotFound();
+        }
+
+        #endregion Other
     }
 }
