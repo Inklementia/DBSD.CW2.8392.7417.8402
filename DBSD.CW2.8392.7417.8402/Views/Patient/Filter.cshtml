@@ -7,85 +7,76 @@
 }
 
 <h1>Patient list</h1>
-<p>
-    <a class="btn btn-primary" asp-action="Create">Register patient</a>
-</p>
-<h4>Filter patients</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Filter" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="RegisteredDate" class="control-label"></label>
-                <input asp-for="RegisteredDate" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="DiagnoseName" class="control-label"></label>
-                <input asp-for="DiagnoseName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorName" class="control-label"></label>
-                <input asp-for="DoctorName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="SortColumn" class="control-label"></label>
-                @Html.DropDownList("SortColumn",
+
+<h4 class="my-2">Filter patients</h4>
+
+
+<form asp-action="Filter">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="form-group col-3">
+            <label asp-for="Name" class="control-label">First Name or Last Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group  col-6">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group  col-3">
+            <label asp-for="RegisteredDate" class="control-label"></label>
+            <input asp-for="RegisteredDate" class="form-control" />
+        </div>
+        <div class="form-group  col-3">
+            <label asp-for="DiagnoseName" class="control-label"></label>
+            <input asp-for="DiagnoseName" class="form-control" />
+        </div>
+        <div class="form-group  col-3">
+            <label asp-for="DoctorName" class="control-label"></label>
+            <input asp-for="DoctorName" class="form-control" />
+        </div>
+        <div class="form-group  col-3">
+            <label asp-for="SortColumn" class="control-label"></label>
+            @Html.DropDownList("SortColumn",
 Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
-            </div>
-            <div class="form-group form-check">
+        </div>
+
+        <div class="form-group  col-3">
+            <div class=" form-check mb-2">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="SortDesc" /> @Html.DisplayNameFor(model => model.SortDesc)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Filter" class="btn btn-primary" />
-            </div>
-        </form>
+            <input type="submit" value="Filter" class="btn our-btn btn-block" />
+        </div>
     </div>
-</div>
 
-<div class="export-btn text-center">
-    <span class="btn btn-warning text-btn">
-        @Html.ActionLink(
-    "Export to JSON",
-    "ExportJson",
-    new
-    {
-       name = Model.Name,
-       address = Model.Address,
-       registeredDate = Model.RegisteredDate,
-       diagnoseName = Model.DiagnoseName,
-       doctorName = Model.DoctorName
-    })
-    </span>
 
-    <div class="btn btn-warning text-btn">
-        @Html.ActionLink(
-        "Export to XML",
-        "ExportXml",
+</form>
+<h4 class="my-2">Import/Export Patients</h4>
+
+<div class="row">
+    <div class="col">
+        <div class="export-import">
+            @Html.ActionLink(
+        "Export to JSON",
+        "ExportJson",
         new
         {
-            name = Model.Name,
-            address = Model.Address,
-            registeredDate = Model.RegisteredDate,
-            diagnoseName = Model.DiagnoseName,
-            doctorName = Model.DoctorName
+           name = Model.Name,
+           address = Model.Address,
+           registeredDate = Model.RegisteredDate,
+           diagnoseName = Model.DiagnoseName,
+           doctorName = Model.DoctorName
         })
 
+        </div>
     </div>
-    <div class="btn btn-warning text-btn">
-        @Html.ActionLink(
-            "Export to CSV",
-            "ExportCsv",
+
+    <div class="col">
+        <div class="export-import">
+            @Html.ActionLink(
+            "Export to XML",
+            "ExportXml",
             new
             {
                 name = Model.Name,
@@ -94,114 +85,141 @@ Html.GetEnumSelectList<SortColumn>(), new { @class = "form-control" })
                 diagnoseName = Model.DiagnoseName,
                 doctorName = Model.DoctorName
             })
+
+        </div>
     </div>
-
-    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportJson">Import Json</a>
-    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportXml">Import Xml</a>
-    <a class="btn btn-success back" asp-area="" asp-controller="Patient" asp-action="ImportCsv">Import Csv</a>
+    <div class="col">
+        <div class="export-import">
+            @Html.ActionLink(
+                "Export to CSV",
+                "ExportCsv",
+                new
+                {
+                    name = Model.Name,
+                    address = Model.Address,
+                    registeredDate = Model.RegisteredDate,
+                    diagnoseName = Model.DiagnoseName,
+                    doctorName = Model.DoctorName
+                })
+        </div>
+    </div>
+    <div class="col">
+        <div class="export-import">
+            <a class="" asp-area="" asp-controller="Patient" asp-action="ImportJson">Import Json</a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="export-import">
+            <a class="" asp-area="" asp-controller="Patient" asp-action="ImportXml">Import Xml</a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="export-import">
+            <a class="" asp-area="" asp-controller="Patient" asp-action="ImportCsv">Import Csv</a>
+        </div>
+    </div>
 </div>
-
-<table class="table table-bordered shadow">
-    <thead class="shadow">
+<table class="table table-bordered table-hover table-striped ">
+    <thead class="">
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().Id)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().LastName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().FirstName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().DoB)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().Address)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().Gender)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().RegisteredDate)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().DiagnoseName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().DoctorName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().DepartmentName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().WardNo)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().NurseName)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Patients.First().Photo)
             </th>
-            <th>Actions</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Patients)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisteredDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiagnoseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WardNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NurseName)
-            </td>
-            <td>
-                @if (item.Photo != null)
-                {
-                    <img src="@Url.Action("ShowImage", new { id = item.Id })" width="70" />
-                }
-                else
-                {
-                    <img src="~/images/default.png" width="70" />
-                }
-            </td>
-            <td class="flex-column">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisteredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnoseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WardNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NurseName)
+                </td>
+                <td>
+                    @if (item.Photo != null)
+                    {
+                        <img src="@Url.Action("ShowImage", new { id = item.Id })" width="70" />
+                    }
+                    else
+                    {
+                        <img src="~/images/default.png" width="70" />
+                    }
+                </td>
+                <td class="flex-column">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
         }
     </tbody>
 </table>

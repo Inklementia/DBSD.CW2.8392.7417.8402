@@ -29,6 +29,9 @@
         <thead class="shadow">
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th>
@@ -64,49 +67,60 @@
                 <th>
                     @Html.DisplayNameFor(model => model.NurseName)
                 </th>
+                <th>
+                    Do stuff
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DoB)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Occupation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RegisteredDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiagnoseName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DoctorName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DepartmentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WardNo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NurseName)
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Occupation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisteredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnoseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WardNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NurseName)
+                </td>
+                <td class="flex-column">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
             }
         </tbody>
     </table>

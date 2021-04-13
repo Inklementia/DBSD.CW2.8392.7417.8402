@@ -48,7 +48,7 @@ namespace DBSD.CW2._8392._7417._8402.DAL
                 var table = new DataTable("patientTable");
                 table.Columns.Add("firstName", typeof(string));
                 table.Columns.Add("lastName", typeof(string));
-                table.Columns.Add("dob", typeof(string));
+                table.Columns.Add("dob", typeof(DateTime));
                 table.Columns.Add("occupation", typeof(string)).AllowDBNull = true;
                 table.Columns.Add("gender", typeof(int));
                 table.Columns.Add("phone", typeof(string));

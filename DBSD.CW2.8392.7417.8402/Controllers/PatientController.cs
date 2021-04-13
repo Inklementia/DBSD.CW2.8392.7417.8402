@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using DBSD.CW2._8392._7417._8402.DAL;
 using DBSD.CW2._8392._7417._8402.Models;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using X.PagedList;
@@ -197,13 +199,16 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 x.Phone,
                 x.Address,
                 x.RegisteredDate,
-                x.EmergencyHospitalization,
-                x.IsDischarged,
+                x.DiagnoseId,
                 x.DiagnoseName,
+                x.DoctorId,
                 x.DoctorName,
                 x.DepartmentName,
+                x.WardId,
+                x.WardNo,
                 x.NurseName,
-                x.WardNo
+                x.EmergencyHospitalization,
+                x.IsDischarged,
             }).ToList();
 
             var memory = new MemoryStream();
@@ -215,7 +220,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "application/json", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.json");
+                return File(memory, "application/json", $"Export-BIS-{DateTime.Now.ToString("dd-MM-yy-mm-ss-ff")}.json");
 
             return NotFound();
         }
@@ -242,7 +247,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "application/xml", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.xml");
+                return File(memory, "application/xml", $"Export-BIS-{DateTime.Now.ToString("dd-MM-yy-mm-ss-ff")}.xml");
 
             return NotFound();
         }
@@ -264,13 +269,13 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
             var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csvWriter.Context.RegisterClassMap<PatientCSVExportHeadersMap>();
+            csvWriter.Context.RegisterClassMap<PatientCSVHeadersMap>();
             csvWriter.WriteRecords(patientsList);
             writer.Flush();
 
             memory.Position = 0;
             if (memory != Stream.Null)
-                return File(memory, "text/csv", $"Export_{DateTime.Now.ToString("yy_mm_ss_ff")}.csv");
+                return File(memory, "text/csv", $"Export-BIS-{DateTime.Now.ToString("dd-MM-yy-mm-ss-ff")}.csv");
 
             return NotFound();
         }
@@ -324,9 +329,15 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 using (var stream = importFile.OpenReadStream())
                 using (var reader = new StreamReader(stream))
                 {
-                    var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
-                    csvReader.Context.RegisterClassMap<PatientCSVImportHeadersMap>();
-                    patients = csvReader.GetRecords<Patient>().ToList<Patient>();
+                    var conf = new CsvConfiguration(CultureInfo.InvariantCulture)
+                    {
+                        HeaderValidated = null,
+                        MissingFieldFound = null
+                    };
+                 
+                    var serializer = new CsvReader(reader, conf);
+          
+                    patients = serializer.GetRecords<Patient>().ToList<Patient>();
                 }
 
                 _repository.BulkInsert(patients);

@@ -48,16 +48,30 @@ namespace DBSD.CW2._8392._7417._8402.Models
         public DateTime RegisteredDate { get; set; }
 
         [DisplayName("Diagnose")]
-        [XmlIgnore]
+
         public int? DiagnoseId { get; set; }
 
+        [DisplayName("Diagnose name")]
+        public string DiagnoseName { get; set; }
+
         [DisplayName("Doctor")]
-        [XmlIgnore]
+
         public int? DoctorId { get; set; }
 
+        [DisplayName("Doctor name")]
+        public string DoctorName { get; set; }
+
+        [DisplayName("Department")]
+        public string DepartmentName { get; set; }
+
         [DisplayName("Ward")]
-        [XmlIgnore]
         public int? WardId { get; set; }
+
+        [DisplayName("Ward number")]
+        public string WardNo { get; set; }
+
+        [DisplayName("Nurse name")]
+        public string NurseName { get; set; }
 
         [DisplayName("Emergency Hospitalization")]
         public bool EmergencyHospitalization { get; set; }
@@ -68,25 +82,6 @@ namespace DBSD.CW2._8392._7417._8402.Models
         [XmlIgnore]
         public byte[] Photo { get; set; }
 
-
-        [DisplayName("Diagnose name")]
-        public string DiagnoseName { get; set; }
-
-
-        [DisplayName("Doctor name")]
-        public string DoctorName { get; set; }
-
-
-        [DisplayName("Department")]
-        public string DepartmentName { get; set; }
-
-
-        [DisplayName("Ward number")]
-        public string WardNo { get; set; }
-
-
-        [DisplayName("Nurse name")]
-        public string NurseName { get; set; }
     }
 }
 [JsonConverter(typeof(StringEnumConverter))]

@@ -1,52 +1,79 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.our-btn {
+    border-radius: 0;
+    background: #ba363a;
+    color: #fff;
+    font-weight: bold;
+    transition: all .2s linear;
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    font-size: 12px;
 }
-
-.export-btn {
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-.back {
-    padding: 10px;
+.our-btn:hover, .our-btn:focus {
+    box-shadow: none;
+    user-select: none;
+    background: #9e2e31;
     color: #fff;
 }
-
-.import-file {
-    padding-bottom: 35px;
+.navbar .nav-link {
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
 }
-.text-btn {
-    padding: 10px;
+.dropdown, .dropleft, .dropright, .dropup {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
-.text-btn > a {
-    color: #fff;
+.form-group{
+    display:flex !important;
+    flex-direction:column;
+    justify-content:flex-end
 }
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.form-control{
+    border-radius:0
 }
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    .form-control:focus {
+        box-shadow: 0px 0px 5px #949494;
+    }
+    .export-import a {
+        border: 2px solid #ba363a;
+        color: #ba363a;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        transition: all .2s linear;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        font-size: 12px;
+        padding: 10px;
+    }
+    .export-import a:hover, .export-import a:focus{
+        text-decoration:none;
+        background:#ba363a;
+        color:#fff;
+    }
+    table{
+        font-size:14px;
+    }
+.table td, .table th{
+    padding:.5rem;
 }
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -78,8 +105,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
 }
 .footer {
   position: absolute;
