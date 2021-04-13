@@ -1,2 +1,0 @@
-FirstName,LastName,DoB,Occupation,Gender,Phone,Address,RegisteredDate,DiagnoseId,DiagnoseName,DoctorId,DoctorName,DepartmentName,WardId,WardNo,NurseName,EmergencyHospitalization,IsDischarged
-"NewUser,Shreck,02/02/2004 00:00:00,Test,Male,+1234567,Test,04/11/2021 00:00:00,15,Chickenpox,17,""Sergeev Michael"",Orthopedics,11,408A,""Lukyanova Zinaida"",True,True"

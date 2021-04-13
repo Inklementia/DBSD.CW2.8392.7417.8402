@@ -1,0 +1,11 @@
+FirstName,LastName,DoB,Occupation,Gender,Phone,Address,DiagnoseId,DoctorId,WardId,EmergencyHospitalization,IsDischarged
+Itadori,Yuji,2000-02-02T00:00:00,Mage,Male,9.9891E+11,"Tokyo, Sergeli 10",1,1,1,TRUE,TRUE
+Megumi,Fushiguro,1989-02-02T00:00:00,Sorcerer,Male,9.9891E+11,"Tokyo, Sergeli 11",2,2,2,TRUE,TRUE
+Nobara,Kugisaki,1981-02-02T00:00:00,Builder,Female,9.9891E+11,"Tokyo, Sergeli 31",3,3,3,TRUE,TRUE
+Satoru,Gojo,2001-02-02T00:00:00,Swordsman,Male,9.9891E+11,"Hitoy, Sergeli 31",4,4,4,TRUE,TRUE
+Maki,Zenin,2001-02-02T00:00:00,Pilot,Female,9.9891E+11,"Hitoy, Sergeli 11",5,5,5,TRUE,TRUE
+Toge,Inumaki,1999-02-02T00:00:00,Painter,Male,9.98909E+11,"China, Sergeli 11",6,6,6,TRUE,TRUE
+Yuta,Okkotsu,1995-02-02T00:00:00,Languagist,Male,9.98449E+11,"China, Olmazor 101",7,7,7,TRUE,TRUE
+Kento,Nanami,1995-02-02T00:00:00,Businessman,Male,9.98449E+11,"China, Olmazor 2",8,8,8,TRUE,TRUE
+Suguru,Geto,1993-02-02T00:00:00,Student,Male,9.98442E+11,"Omerica, Olmazor 22",9,9,9,TRUE,TRUE
+Mahito,Kuchkarbaev,1993-02-02T00:00:00,Driver,Female,9.98443E+11,"Vashington, Olmazor 22",10,10,10,TRUE,TRUE
