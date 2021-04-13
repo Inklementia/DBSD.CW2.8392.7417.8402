@@ -161,3 +161,6 @@ insert into disallowed_dates ([day], [month]) values
 (8, 3),
 (21, 3),
 (9, 5)
+
+
+select * from patient

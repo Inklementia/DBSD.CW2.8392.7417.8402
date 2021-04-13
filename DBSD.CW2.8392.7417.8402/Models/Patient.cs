@@ -34,7 +34,6 @@ namespace DBSD.CW2._8392._7417._8402.Models
 
         public string Occupation { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Gender Gender { get; set; }
 
         [Required]
@@ -79,17 +78,15 @@ namespace DBSD.CW2._8392._7417._8402.Models
         [DisplayName("Discharged")]
         public bool IsDischarged { get; set; }
 
+        [JsonIgnore]
         [XmlIgnore]
         public byte[] Photo { get; set; }
 
     }
 }
-[JsonConverter(typeof(StringEnumConverter))]
 public enum Gender
 {
-    [EnumMember(Value = "Male")]
 
     Male,
-    [EnumMember(Value = "Female")]
     Female
 }

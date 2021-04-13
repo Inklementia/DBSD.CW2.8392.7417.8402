@@ -29,8 +29,8 @@ namespace DBSD.CW2._8392._7417._8402.Models
             Map(m => m.NurseName).Name("NurseName");
             Map(m => m.EmergencyHospitalization).Name("EmergencyHospitalization");
             Map(m => m.IsDischarged).Name("IsDischarged");
-     
+
         }
-       
+
     }
 }

@@ -788,4 +788,3 @@ D:\csharp_files\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcor
 D:\csharp_files\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.dll
 D:\csharp_files\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.pdb
 D:\csharp_files\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\obj\Debug\netcoreapp3.1\DBSD.CW2.8392.7417.8402.genruntimeconfig.cache
-D:\csharp_files\DBSD.CW2.8392.7417.8402\DBSD.CW2.8392.7417.8402\bin\Debug\netcoreapp3.1\Import\sample_data_for_import.json

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPatient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Patient>
+    <Id>100</Id>
+    <FirstName>Itadori</FirstName>
+    <LastName>Yuji</LastName>
+    <DoB>2000-02-02T00:00:00</DoB>
+    <Occupation>Mage</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998909898899</Phone>
+    <Address>Tokyo, Sergeli 10</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>1</DiagnoseId>
+    <DiagnoseName>Asthma</DiagnoseName>
+    <DoctorId>1</DoctorId>
+    <DoctorName>Andrew Sattarov</DoctorName>
+    <DepartmentName>Infectious disease department</DepartmentName>
+    <WardId>1</WardId>
+    <WardNo>221A</WardNo>
+    <NurseName>Igrasheva Boburissa</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+  <Patient>
+    <Id>101</Id>
+    <FirstName>Megumi</FirstName>
+    <LastName>Fushiguro</LastName>
+    <DoB>1989-02-02T00:00:00</DoB>
+    <Occupation>Sorcerer</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998909898811</Phone>
+    <Address>Tokyo, Sergeli 11</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>2</DiagnoseId>
+    <DiagnoseName>Diabetes</DiagnoseName>
+    <DoctorId>2</DoctorId>
+    <DoctorName>Sauron Targarien</DoctorName>
+    <DepartmentName>Therapy</DepartmentName>
+    <WardId>2</WardId>
+    <WardNo>221A</WardNo>
+    <NurseName>Bobko Firgashev</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+   <Patient>
+    <Id>102</Id>
+    <FirstName>Nobara</FirstName>
+    <LastName>Kugisaki</LastName>
+    <DoB>1981-02-02T00:00:00</DoB>
+    <Occupation>Builder</Occupation>
+    <Gender>Female</Gender>
+    <Phone>+998909898822</Phone>
+    <Address>Tokyo, Sergeli 31</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>3</DiagnoseId>
+    <DiagnoseName>Covid-19</DiagnoseName>
+    <DoctorId>3</DoctorId>
+    <DoctorName>BredPitt Saurov</DoctorName>
+    <DepartmentName>Dermatology</DepartmentName>
+    <WardId>3</WardId>
+    <WardNo>222A</WardNo>
+    <NurseName>Saur Bredpittov</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+   <Patient>
+    <Id>103</Id>
+    <FirstName>Satoru</FirstName>
+    <LastName>Gojo</LastName>
+    <DoB>2001-02-02T00:00:00</DoB>
+    <Occupation>Swordsman</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998909898111</Phone>
+    <Address>Hitoy, Sergeli 31</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>4</DiagnoseId>
+    <DiagnoseName>Nail fungus</DiagnoseName>
+    <DoctorId>4</DoctorId>
+    <DoctorName>Gaydar Bobov</DoctorName>
+    <DepartmentName>Psychiatry</DepartmentName>
+    <WardId>4</WardId>
+    <WardNo>222B</WardNo>
+    <NurseName>Bob Guylord</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+  <Patient>
+    <Id>104</Id>
+    <FirstName>Maki</FirstName>
+    <LastName>Zenin</LastName>
+    <DoB>2001-02-02T00:00:00</DoB>
+    <Occupation>Pilot</Occupation>
+    <Gender>Female</Gender>
+    <Phone>+998909898111</Phone>
+    <Address>Hitoy, Sergeli 11</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>5</DiagnoseId>
+    <DiagnoseName>Depressive disorder</DiagnoseName>
+    <DoctorId>5</DoctorId>
+    <DoctorName>Den Khanov</DoctorName>
+    <DepartmentName>Cardiology</DepartmentName>
+    <WardId>5</WardId>
+    <WardNo>300A</WardNo>
+    <NurseName>John Doe</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+   <Patient>
+    <Id>105</Id>
+    <FirstName>Toge</FirstName>
+    <LastName>Inumaki</LastName>
+    <DoB>1999-02-02T00:00:00</DoB>
+    <Occupation>Painter</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998909338111</Phone>
+    <Address>China, Sergeli 11</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>6</DiagnoseId>
+    <DiagnoseName>Anxiety disorder</DiagnoseName>
+    <DoctorId>6</DoctorId>
+    <DoctorName>Andijon Ferganievv</DoctorName>
+    <DepartmentName>Gastroenterology</DepartmentName>
+    <WardId>6</WardId>
+    <WardNo>300B</WardNo>
+    <NurseName>Svetoslav Andijanov</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+   <Patient>
+    <Id>106</Id>
+    <FirstName>Yuta</FirstName>
+    <LastName>Okkotsu</LastName>
+    <DoB>1995-02-02T00:00:00</DoB>
+    <Occupation>Languagist</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998449338111</Phone>
+    <Address>China, Olmazor 101</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>7</DiagnoseId>
+    <DiagnoseName>Ulcer</DiagnoseName>
+    <DoctorId>7</DoctorId>
+    <DoctorName>Karas Basalov</DoctorName>
+    <DepartmentName>Oncology</DepartmentName>
+    <WardId>7</WardId>
+    <WardNo>300C</WardNo>
+    <NurseName>Basal Svetliy</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+  <Patient>
+    <Id>107</Id>
+    <FirstName>Kento</FirstName>
+    <LastName>Nanami</LastName>
+    <DoB>1995-02-02T00:00:00</DoB>
+    <Occupation>Businessman</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998449366111</Phone>
+    <Address>China, Olmazor 2</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>8</DiagnoseId>
+    <DiagnoseName>Cancer</DiagnoseName>
+    <DoctorId>8</DoctorId>
+    <DoctorName>Basal Ahmedov</DoctorName>
+    <DepartmentName>Surgery</DepartmentName>
+    <WardId>8</WardId>
+    <WardNo>301A</WardNo>
+    <NurseName>Ahmed Basalov</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+    <Patient>
+    <Id>108</Id>
+    <FirstName>Suguru</FirstName>
+    <LastName>Geto</LastName>
+    <DoB>1993-02-02T00:00:00</DoB>
+    <Occupation>Student</Occupation>
+    <Gender>Male</Gender>
+    <Phone>+998442266111</Phone>
+    <Address>Omerica, Olmazor 22</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>9</DiagnoseId>
+    <DiagnoseName>Flu</DiagnoseName>
+    <DoctorId>9</DoctorId>
+    <DoctorName>Melon Waterov</DoctorName>
+    <DepartmentName>Traumatology</DepartmentName>
+    <WardId>9</WardId>
+    <WardNo>302B</WardNo>
+    <NurseName>Anna Satoru</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+  <Patient>
+    <Id>109</Id>
+    <FirstName>Mahito</FirstName>
+    <LastName>Kuchkarbaev</LastName>
+    <DoB>1993-02-02T00:00:00</DoB>
+    <Occupation>Driver</Occupation>
+    <Gender>Female</Gender>
+    <Phone>+998443466111</Phone>
+    <Address>Vashington, Olmazor 22</Address>
+    <RegisteredDate>2021-04-11T00:00:00</RegisteredDate>
+    <DiagnoseId>10</DiagnoseId>
+    <DiagnoseName>Appendicitis</DiagnoseName>
+    <DoctorId>10</DoctorId>
+    <DoctorName>Maria Irgasheva</DoctorName>
+    <DepartmentName>Gynecology</DepartmentName>
+    <WardId>10</WardId>
+    <WardNo>303A</WardNo>
+    <NurseName>Angella Irgasheva</NurseName>
+    <EmergencyHospitalization>true</EmergencyHospitalization>
+    <IsDischarged>true</IsDischarged>
+  </Patient>
+</ArrayOfPatient>

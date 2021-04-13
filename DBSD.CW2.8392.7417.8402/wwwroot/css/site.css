@@ -5,20 +5,34 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
+.actions{
 
-.our-btn {
-    border-radius: 0;
-    background: #ba363a;
-    color: #fff;
-    font-weight: bold;
-    transition: all .2s linear;
-    padding: 10px 20px;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    
-    font-size: 12px;
 }
+.actions .btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+}
+    .actions .btn:hover, .actions .btn:focus {
+        text-decoration: none;
+        color: #fff
+    }
+    .our-btn {
+        border-radius: 0;
+        background: #ba363a;
+        color: #fff;
+        font-weight: bold;
+        transition: all .2s linear;
+        padding: 10px 20px;
+        font-family: 'Roboto', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+    }
 .our-btn:hover, .our-btn:focus {
     box-shadow: none;
     user-select: none;
@@ -70,11 +84,29 @@ a.navbar-brand {
 .table td, .table th{
     padding:.5rem;
 }
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    font-size: 14px;
+.patient-card{
+    background:#eee;
+    padding:15px 15px 0 15px
 }
+    .patient-card h2{
+        font-size:18px;
+        text-transform:uppercase;
+        letter-spacing:2px;
+        font-weight:normal
+    }
+    .patient-card h1 {
+        font-size: 18px;
+        color: #9e2e31;
+    }
+    .patient-card h4 {
+        font-size: 15px;
+        margin:10px 0
+    }
+    /* Sticky footer styles
+-------------------------------------------------- */
+    html {
+        font-size: 14px;
+    }
 @media (min-width: 768px) {
   html {
     font-size: 16px;

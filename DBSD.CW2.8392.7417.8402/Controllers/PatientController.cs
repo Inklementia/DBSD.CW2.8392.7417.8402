@@ -188,34 +188,11 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                                               out int totalCount,
                                               false);
 
-
-            var patientListWithoutFKs = patientsList.Select(x => new {
-                x.Id,
-                x.FirstName,
-                x.LastName,
-                x.DoB,
-                x.Occupation,
-                x.Gender,
-                x.Phone,
-                x.Address,
-                x.RegisteredDate,
-                x.DiagnoseId,
-                x.DiagnoseName,
-                x.DoctorId,
-                x.DoctorName,
-                x.DepartmentName,
-                x.WardId,
-                x.WardNo,
-                x.NurseName,
-                x.EmergencyHospitalization,
-                x.IsDischarged,
-            }).ToList();
-
             var memory = new MemoryStream();
             var writer = new StreamWriter(memory);
             var serializer = new JsonSerializer();
             serializer.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-            serializer.Serialize(writer, patientListWithoutFKs);
+            serializer.Serialize(writer, patientsList);
             writer.Flush();
 
             memory.Position = 0;
@@ -336,7 +313,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                     };
                  
                     var serializer = new CsvReader(reader, conf);
-          
+                    serializer.Context.RegisterClassMap<PatientCSVHeadersMap>();
                     patients = serializer.GetRecords<Patient>().ToList<Patient>();
                 }
 
