@@ -123,7 +123,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
             try
             {
                 byte[] photoBytes = null;
-                var patient = MapViewModelToPatient(model, photoBytes);
+                
                 if(model.PhotoUpload != null)
                 {
                     using (var memory = new MemoryStream())
@@ -131,12 +131,8 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                         model.PhotoUpload.CopyTo(memory);
                         photoBytes = memory.ToArray();
                     }
-                    patient.Photo = photoBytes;
-                } else
-                {
-                    //if user did not choose new photo, leave old one
-                    patient.Photo = model.Photo;
                 }
+                var patient = MapViewModelToPatient(model, photoBytes);
                 _repository.Update(patient);
                 return RedirectToAction(nameof(Filter));
             }
@@ -381,7 +377,7 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
                 Gender = model.Gender,
                 Phone = model.Phone,
                 Address = model.Address,
-                Photo = photoBytes,
+                Photo =  photoBytes,
                 DoctorId = model.DoctorId,
                 DiagnoseId = model.DiagnoseId,
                 WardId = model.WardId,
