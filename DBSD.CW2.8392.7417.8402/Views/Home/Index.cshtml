@@ -2,7 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center welcom-page">
+    <h1 class="display-4">Welcome to BIS Hospital</h1>
+    <p>This is a CW of DBMS module students. We had a lot of fun making this application.</p>
+    <p class="mt-5 lead font-weight-bold">What do you wanna do today?</p>
+    <div class="d-flex mb-3 justify-content-center">
+        <a asp-controller="Patient" asp-action="ExportJson" class="pills-btn mx-3">
+
+            <img src="~/images/blue.png" alt="Blue Pill" />
+            <span>Export Json</span>
+        </a>
+        <a asp-controller="Patient" asp-action="ImportJson" class="pills-btn mx-3">
+
+            <img src="~/images/red.png" alt="Red Pill" />
+            <span>Import Json</span>
+        </a>
+    </div>
+    
+    <p>Or maybe you wanna do some <a asp-area="" asp-controller="Patient" asp-action="Filter">filtration?</a> (¬‿¬)</p>
 </div>

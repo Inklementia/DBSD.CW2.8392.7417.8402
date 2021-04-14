@@ -8,6 +8,12 @@ a.navbar-brand {
 .actions{
 
 }
+a{
+    color:#ba363a
+}
+a:hover, a:focus{
+    color:#9e2e31
+}
 .actions .btn {
     width: 30px;
     height: 30px;
@@ -102,11 +108,35 @@ a.navbar-brand {
         font-size: 15px;
         margin:10px 0
     }
-    /* Sticky footer styles
--------------------------------------------------- */
-    html {
-        font-size: 14px;
+.pills-btn{
+    display: flex;
+    flex-direction:column;
+    border:2px solid #949494;
+    align-items:center;
+    padding:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#000000
+}
+    .pills-btn img{
+        max-width:100px;
     }
+    .pills-btn:hover {
+        text-decoration: none;
+        color:#000
+    }
+.welcom-page{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
