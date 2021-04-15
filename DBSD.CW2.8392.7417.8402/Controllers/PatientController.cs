@@ -266,24 +266,31 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         [HttpPost]
         public ActionResult ImportJson(IFormFile importFile)
         {
-            IList<Patient> patients = null;
-            if (importFile != null)
+            try
             {
-                using (var stream = importFile.OpenReadStream())
-                using (var reader = new StreamReader(stream))
+                IList<Patient> patients = null;
+                if (importFile != null)
                 {
-                    var serializer = new JsonSerializer();
-                    patients = (List<Patient>)serializer.Deserialize(reader, typeof(List<Patient>));
+                    using (var stream = importFile.OpenReadStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var serializer = new JsonSerializer();
+                        patients = (List<Patient>)serializer.Deserialize(reader, typeof(List<Patient>));
+                    }
+
+                    _repository.BulkInsert(patients);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Empty file");
                 }
 
-                _repository.BulkInsert(patients);
-            }
-            else
+                return View(patients);
+            } catch
             {
-                ModelState.AddModelError("", "Empty file");
+                return View();
             }
-
-            return View(patients);
+           
         }
 
 
@@ -296,31 +303,39 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         [HttpPost]
         public ActionResult ImportCsv(IFormFile importFile)
         {
-            List<Patient> patients = null;
-            if (importFile != null)
+            try
             {
-                using (var stream = importFile.OpenReadStream())
-                using (var reader = new StreamReader(stream))
+                List<Patient> patients = null;
+                if (importFile != null)
                 {
-                    var conf = new CsvConfiguration(CultureInfo.InvariantCulture)
+                    using (var stream = importFile.OpenReadStream())
+                    using (var reader = new StreamReader(stream))
                     {
-                        HeaderValidated = null,
-                        MissingFieldFound = null
-                    };
-                 
-                    var serializer = new CsvReader(reader, conf);
-                    serializer.Context.RegisterClassMap<PatientCSVHeadersMap>();
-                    patients = serializer.GetRecords<Patient>().ToList<Patient>();
+                        var conf = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            HeaderValidated = null,
+                            MissingFieldFound = null
+                        };
+
+                        var serializer = new CsvReader(reader, conf);
+                        serializer.Context.RegisterClassMap<PatientCSVHeadersMap>();
+                        patients = serializer.GetRecords<Patient>().ToList<Patient>();
+                    }
+
+                    _repository.BulkInsert(patients);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Empty file");
                 }
 
-                _repository.BulkInsert(patients);
+                return View(patients);
             }
-            else
+            catch
             {
-                ModelState.AddModelError("", "Empty file");
+                return View();
             }
-
-            return View(patients);
+          
         }
 
         // view for import
@@ -334,24 +349,31 @@ namespace DBSD.CW2._8392._7417._8402.Controllers
         [HttpPost]
         public ActionResult ImportXml(IFormFile importFile)
         {
-            var patients = new List<Patient>();
-            if (importFile != null)
+            try
             {
-                using (var stream = importFile.OpenReadStream())
-                using (var reader = new StreamReader(stream))
+                var patients = new List<Patient>();
+                if (importFile != null)
                 {
-                    var serializer = new XmlSerializer(typeof(List<Patient>));
-                    patients = (List<Patient>)serializer.Deserialize(reader);
+                    using (var stream = importFile.OpenReadStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var serializer = new XmlSerializer(typeof(List<Patient>));
+                        patients = (List<Patient>)serializer.Deserialize(reader);
+                    }
+
+                    _repository.BulkInsert(patients);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Empty file");
                 }
 
-                _repository.BulkInsert(patients);
-            }
-            else
+                return View(patients);
+            } catch
             {
-                ModelState.AddModelError("", "Empty file");
+                return View();
             }
-
-            return View(patients);
+     
         }
 
         #endregion Importing
