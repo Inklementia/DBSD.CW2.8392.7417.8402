@@ -163,4 +163,3 @@ insert into disallowed_dates ([day], [month]) values
 (9, 5)
 
 
-select * from patient
